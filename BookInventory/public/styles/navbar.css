@@ -1,0 +1,52 @@
+img {
+    width: 30px;
+    height: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.logo {
+    flex: 1;
+}
+
+.nav-left li {
+    display: inline-block;
+    list-style: none;
+    flex: 1;
+}
+
+.navItems{
+    visibility: visible;
+}
+
+.navItems li {
+    text-align: left;
+}
+
+.subMenu {
+    visibility: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.search {
+    flex: 1.5;
+    margin: auto;
+}
+
+.nav-right {
+    display: inline-block;
+    flex: 1;
+}
+
+.nav-right img {
+    margin-left: 80%;
+}
