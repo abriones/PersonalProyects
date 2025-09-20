@@ -1,26 +1,42 @@
 <link rel="stylesheet" href="/styles/navbar.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
 <header>
-    <div class="container">
-        <div class="logo">
-            <img src="/image/Pyra_pic.png" alt="">
+    <div class="navBarContainer">
+            <div class="navBarLogo">
+                <img src="./image/Pyra_pic.png" alt="">
+            </div>
+            <nav class="navBarLeft">
+                <div class="dropDownMenu">
+                    <a href="/home">Home</a>
+                </div>
+                <div class="dropDownMenu">
+                    <a href="/shelf">Shelf▾</a>
+                    <div class="dropDownSubMenu">
+                        <a href="">This is filler!</a>
+                        <a href="">This is filler!</a>
+                        <a href="">This is filler!</a>
+                    </div>
+                </div>
+                <div class="dropDownMenu">
+                    <a href="">Other▾</a>
+                    <div class="dropDownSubMenu">
+                        <a href="">This is filler!</a>
+                        <a href="">This is filler!</a>
+                        <a href="">This is filler!</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="navBarSearch">
+                <form action="/results" method="GET">
+                    <input type="text" id="searchBar" name="searchBar" placeholder="Search for books!">
+                    <button>Search!</button>
+                </form>
+            </div>
+            <nav class="navBarRight">
+                <img src="./image/user.png" alt="">
+            </nav>
         </div>
-        <nav class="nav-left">
-            <ul class="navItems">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/shelf">Shelf</a></li>
-                <li>Other!</li>
-            </ul>
-        </nav>
-        <div class="search">
-            <form action="/results" method="GET">
-                <input type="text" id="searchBar" name="searchBar">
-                <button>Search!</button>
-            </form>
-        </div>
-        <nav class="nav-right">
-            <img src="/image/user.png" alt="">
-        </nav>
-
-    </div>
 </header>
