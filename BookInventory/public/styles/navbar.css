@@ -1,52 +1,88 @@
-img {
-    width: 30px;
-    height: 30px;
+body {
+    margin: 0;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: <weight>; */
+    font-style: normal;
 }
 
-.container {
+.navBarContainer {
+    height: 50px;
+    background-color: #1c3144;
     display: flex;
-    justify-content: space-around;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
-
 }
 
-.logo {
-    flex: 1;
+.navBarLogo {
+    flex: 1 1 auto;
 }
 
-.nav-left li {
-    display: inline-block;
-    list-style: none;
-    flex: 1;
+.navBarLogo img {
+    height: 50px;
 }
 
-.navItems{
-    visibility: visible;
+.navBarLeft {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+    
 }
 
-.navItems li {
-    text-align: left;
+.dropDownMenu {
+    float: left;
+    overflow: hidden;
+    padding: 10px 35px 10px 10px;
+    flex: 1 1 auto;
 }
 
-.subMenu {
-    visibility: hidden;
+.dropDownSubMenu {
+    display: none;
+    position: absolute;
+    background-color: #1c3144;
+    margin-left: -10px;
+    z-index: -1;
 }
 
-a {
+.dropDownSubMenu a {
+    display: block;
+    padding: 15px;
+}
+
+.navBarLeft a {
     text-decoration: none;
-    color: #000;
+    color: #FFF;
 }
 
-.search {
-    flex: 1.5;
-    margin: auto;
+.navBarContainer a:hover, .dropDownMenu:hover{
+    background-color: #70161e;
 }
 
-.nav-right {
-    display: inline-block;
-    flex: 1;
+.dropDownMenu:hover .dropDownSubMenu {
+    display: block;
 }
 
-.nav-right img {
-    margin-left: 80%;
+.dropDownSubMenu a:hover {
+    background-color: #2e506d;
+}
+
+.navBarSearch {
+    flex: 3 1 auto;
+}
+
+#searchBar {
+    width: 75%;
+}
+
+.navBarRight img {
+    flex: 1 1 auto;
+
+}
+
+.navBarRight img {
+    border-radius: 30px;
+    background-color: #666;
+    height: 40px;
+
 }
