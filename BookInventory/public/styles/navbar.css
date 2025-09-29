@@ -87,3 +87,9 @@ body {
     height: 40px;
 
 }
+
+.navBarRight a{
+    text-decoration: none;
+    color: #FFF;
+
+}

@@ -36,6 +36,12 @@
                 </form>
             </div>
             <nav class="navBarRight">
+                <%if(!currentUser){%>
+                <a href="/login">Log in</a>
+                <a href="/signin">Sign In</a>
+                <%}else{%>
+                <a href="/logout">Log Out</a>
+                <%}%>
                 <img src="./image/user.png" alt="">
             </nav>
         </div>
