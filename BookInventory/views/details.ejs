@@ -1,0 +1,53 @@
+
+<link rel="stylesheet" href="/styles/results.css">
+
+<%layout('layouts/bodyTemplate')%>
+
+    <div>
+        <h1><%=bookMain.title%></h1>
+        <h2>by <%=bookMain.author_name%></h2>
+        
+        <%if(!bookMain.cover_i){%>
+            <img src="/image/photo.png" alt="bookCover" id="noBookCover">            
+        <%}else{%>
+            <% const coverImg = bookMain.cover_i %>
+            <img src="https://covers.openlibrary.org/b/id/<%=coverImg%>-L.jpg" alt="bookCover" id="bookCover">            
+        <%}%>
+         
+        <h4>Year published: <%=bookMain.first_publish_year%></h4>
+        <%if(bookDetails.excerpts){%>
+            <%if(bookDetails.excerpts[0]['pages']){%>
+                <h4>Pages: <%=bookDetails.excerpts[0].pages%></h4>
+            <%}%>
+        <%}%>
+        
+        
+        <%if(!bookDetails.description){%>
+            <p>No description available</p>                                                 
+        <%}else{%>
+            <%if(typeof bookDetails.description === 'object'){%>
+                <h3>Overview</h3>
+                <p><%=bookDetails.description['value']%></p>
+            <%}else{%>
+                <h3>Overview</h3>
+                <p><%=bookDetails.description%></p>
+            <%}%>
+        <%}%>
+             
+        <%if(bookDetails.covers && Object.keys(bookDetails.covers).length > 1){%>
+            <h3>Other covers!</h3> 
+            <%for(let key in bookDetails.covers){%>
+                <% const coverImg = bookDetails.covers[key] %>
+                <img src="https://covers.openlibrary.org/b/id/<%=coverImg%>-L.jpg" alt="bookCover" id="bookCover">
+            <%}%>
+        <%}%>
+        
+        
+
+        <!-- <%for(let key in bookMain.description){%>
+            <p><%=key%></p>
+            <p><%=bookMain.description[key]%></p>     
+        <%}%>      
+        
+        -->
+    </div>

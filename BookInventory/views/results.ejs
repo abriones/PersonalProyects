@@ -1,41 +1,59 @@
-<title>Results for <%=userSearch%></title>
+<title>Results for <%=userSearch%>
+</title>
 <link rel="stylesheet" href="/styles/results.css">
 
 <%layout('layouts/bodyTemplate')%>
 
-<h1>Results for "<%=userSearch%>"</h1>
-<div class="cardContainer">
-    <form action="/home" id="goBack">
-        <button>Back!</button>
-    </form>
-    <%for(let key in pass.docs){%>
-        <div class="bookCard">
-            <div class="bookCardColumns" id="coverImage">
-                <%if(!pass.docs[key]['cover_i']){%>
-                    <img src="/image/photo.png" alt="bookCover" id="noBookCover">
-                    <%}else{%>
-                        <img src="https://covers.openlibrary.org/b/id/<%=pass.docs[key]['cover_i']%>-L.jpg"
-                            alt="bookCover" id="bookCover">
-                        <%}%>
-            </div>
-            <div class="bookCardColumns" id="bookData">
-                <lu>
-                    <li>Title: <%=pass.docs[key]['title']%>
-                    </li>
-                    <li>Author: <%=pass.docs[key]['author_name']%>
-                    </li>
-                    <li>First publish year: <%=pass.docs[key]['first_publish_year']%>
-                    </li>
-                    <!-- <%for(let data in pass.docs[key]['ia']){%>
+    <h1>Results for "<%=userSearch%>"</h1>
+    <div class="cardContainer">
+        <form action="/home" id="goBack">
+            <button>Back!</button>
+        </form>
+        <%for(let key in pass.docs){%>
+            <div class="bookCard">
+                <div class="bookCardColumns" id="coverImage">
+                    <%if(!pass.docs[key]['cover_i']){%>
+                        <img src="/image/photo.png" alt="bookCover" id="noBookCover">
+                        <%}else{%>
+                            <img src="https://covers.openlibrary.org/b/id/<%=pass.docs[key]['cover_i']%>-L.jpg"
+                                alt="bookCover" id="bookCover">
+                            <%}%>
+                </div>
+                <div class="bookCardColumns" id="bookData">
+                    <lu>
+                        <li>Title: <%=pass.docs[key]['title']%>
+                        </li>
+                        <li>by <%=pass.docs[key]['author_name']%>
+                        </li>
+                        <li>First publish year: <%=pass.docs[key]['first_publish_year']%>
+                        </li>
+                        <!-- <%for(let data in pass.docs[key]['ia']){%>
                         <%if(pass.docs[key]['ia'][data].includes('isbn')){%>
                             <li>ISBN: <%=pass.docs[key]['ia'][data].replace('isbn_','')%>%></li>
                         <%}%>
                         <%}%> -->
-                </lu>
+                    </lu>
+                </div>
+                <form class="bookCardButtons" action="/details" method="get">                    
+                    <button name="bookDetails" value="<%=key%>,<%=userSearch%>">Details</button>
+
+                    <select name="ShelftOption" id="ShelftOption" formaction="/login" onchange="this.form.submit()">
+                        <% if(shelfResult){%>
+                            <%for(let shelf of shelfResult){%>
+                                <option value="<%= shelf.shelftName %>">
+                                    <%= shelf.shelftName %>
+                                </option>
+                                <%}%>
+                        <% } else{%>
+
+                                <option value="'Add">Add
+                                </option>
+                            <% } %>
+                    </select>
+                </form>
             </div>
-        </div>
-        <%}%>
-            <form action="/home" id="goBack">
-                <button>Back!</button>
-            </form>
-</div>
+            <%}%>
+                <form action="/home" id="goBack">
+                    <button>Back!</button>
+                </form>
+    </div>

@@ -12,7 +12,7 @@ const User =require('./models/users');
 const usersRoute = require('./routes/user');
 const flash = require('connect-flash');
 const {isLoggedIn} = require('./util/middleware')
-const shelf = require('./models/shelfs')
+const Shelf = require('./models/shelfs');
 
 try{
     mongoose.connect('mongodb://localhost:27017/BookInventory');
@@ -70,23 +70,29 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/shelf',isLoggedIn,async (req, res) => {
-    const shelfResult = await shelf.find({});
-    console.log(shelfResult);
+//app.get('/shelf',async (req, res) => {
+    const shelfResult = await Shelf.find({user: res.locals.currentUser});
+    console.log(shelfResult)
     res.render('shelf',{shelfResult});
 });
 
 app.post('/shelf',isLoggedIn,async (req, res) => {
-    const shelfResult = await shelf.find({});
-    console.log(shelfResult);
-    res.render('shelf',{shelfResult});
+//app.post('/shelf',async(req, res) => {
+    const newShelf = new Shelf({shelftName: req.body.addShelf})
+    newShelf.user = res.locals.currentUser;
+    newShelf.save();
+    req.flash('success',`Added ${newShelf.shelftName}`)
+    res.redirect('shelf')
 });
+
 app.get('/results',async (req, res) => {
     try {
+        const shelfResult = await Shelf.find({user: res.locals.currentUser});
         const userSearch = req.query.searchBar;
         const config = { params: { q: userSearch } };
         const response = await axios.get('https://openlibrary.org/search.json?',config);
         const pass = response.data;
-        res.render('results', {pass,userSearch});
+        res.render('results', {pass,userSearch,shelfResult});
         
     } catch (error) {
         console.error('Error fetching external data:', error);
@@ -94,6 +100,23 @@ app.get('/results',async (req, res) => {
     }
 });
 
+app.get('/details',async (req, res) => {
+    try {
+        const rawData = req.query.bookDetails    
+        const userSearch = rawData.split(',',2)
+        const config = { params: { q: userSearch[1] } };
+        const response = await axios.get('https://openlibrary.org/search.json?',config);
+        const bookMain = response.data.docs[rawData[0]];
+        const details = bookMain['key']
+        const rawDetails =  await axios.get(`https://openlibrary.org${details}`);
+        const bookDetails = rawDetails.data
+        res.render('details', {bookMain,bookDetails,});
+        
+    } catch (error) {
+        console.error('Error fetching external data:', error);
+        res.status(500).json({ message: 'Error fetching data from external API' });
+    }
+});
 
 
 app.listen(3000, () => {

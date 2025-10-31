@@ -1,13 +1,21 @@
 <%layout('layouts/bodyTemplate')%>
+    <link rel="stylesheet" href="/styles/shelf.css">
+    <h1>This is Shelf</h1>
 
-<h1>This is Shelf</h1>
+    <button id="showInput">Add Shelf</button>
 
-<form action="/shelft" method="POST">
-    <button>Add Shelf</button>
-</form>
-<% if (!shelfResult.shelftName) {%>
-    <div>No shelfs</div>    
-<%}else{%>
-    <div>This is shelf</div>    
+    <form action="/shelf" method="POST">
+        <input type="text" id="addShelf" name="addShelf">
+        <button id="addShelftBtn" name="[shelf]shelftName">Add Shelf</button>
+    </form>
 
-    <% } %>
+    <% if(shelfResult){%>
+        <% for(let shelf of shelfResult) {%>
+        <div>
+            <h2>'<%= shelf.shelftName %>'</h2>
+        </div>
+            <% } %>
+    <% } else{%>
+        <h2>No shelves</h2>
+        <% } %>
+    <script src="/js/shelft.js"></script>

@@ -1,12 +1,12 @@
-#bookCover{
-    height: 500px;
-    width: 350px;
-    border-radius: 30px;
+/* #bookCover{
+    height: 150px;
+    width: 100px;
+    border-radius: 10px;
 }
 #noBookCover{
-    height: 350px;
-    width: 350px;
-}
+    height: 125px;
+    width: 150px;
+} */
 
 #coverImage{
     width: 50%;
@@ -22,7 +22,7 @@
     height: 80%;
     width: 80%;
     border: 1px grey solid;
-    border-radius: 50px;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     margin: 5% 10%;
@@ -30,6 +30,6 @@
 
 .bookCardColumns{
     flex: 1;
-    padding: 50px;
+    padding: 10px;
 
 }
